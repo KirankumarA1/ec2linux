@@ -1,34 +1,10 @@
 ---
-- name: Install Apache on Apache Server
-  hosts: apache
+- hosts: apache
   become: yes
+  roles:
+    - apache
 
-  tasks:
-    - name: Install Apache2
-      apt:
-        name: apache2
-        state: present
-        update_cache: yes
-
-    - name: Start Apache2
-      service:
-        name: apache2
-        state: started
-        enabled: yes
-
-- name: Install Nginx on Nginx Server
-  hosts: nginx
+- hosts: nginx
   become: yes
-
-  tasks:
-    - name: Install Nginx
-      apt:
-        name: nginx
-        state: present
-        update_cache: yes
-
-    - name: Start Nginx
-      service:
-        name: nginx
-        state: started
-        enabled: yes
+  roles:
+    - nginx
